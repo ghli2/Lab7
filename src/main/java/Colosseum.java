@@ -73,7 +73,29 @@ public class Colosseum {
      *         Implement this function.
      */
     public static Pokemon buildPokemon() {
+        Scanner s = new Scanner(System.in);
+        final int levelLim = 50;
         Pokemon tempPokemon = new Pokemon();
+        System.out.print("Please name your Pokemon: ");
+        tempPokemon.name = s.nextLine();
+        do {
+            System.out.print("\nEnter hitpoints (1-50): ");
+            tempPokemon.hitPoints = Integer.parseInt(s.nextLine());
+        }
+        while (tempPokemon.hitPoints < 1 || tempPokemon.hitPoints > levelLim);
+        System.out.print("\nSplit fifty points between attack level and defense level");
+        do {
+            System.out.print("\nEnter attack level (1-49): ");
+            tempPokemon.attackLevel = Integer.parseInt(s.nextLine());
+        }
+        while (tempPokemon.attackLevel < 1 || tempPokemon.attackLevel >= levelLim);
+        do {
+            System.out.printf("\nEnter defense level(1-%d): ", levelLim - tempPokemon.attackLevel);
+            tempPokemon.defenseLevel = Integer.parseInt(s.nextLine());
+        }
+        while (tempPokemon.defenseLevel < 1
+            || tempPokemon.defenseLevel > levelLim - tempPokemon.attackLevel);
+
         return tempPokemon;
     }
 
@@ -91,7 +113,11 @@ public class Colosseum {
      * Implement this function.
      */
     public static void printWhoIsAhead() {
-        System.out.println("Implement me!");
+        if (firstPokemon.hitPoints > secondPokemon.hitPoints) {
+            System.out.printf("%s is ahead with %d hp", firstPokemon.name, firstPokemon.hitPoints);
+        } else {
+           System.out.printf("%s is ahead with %d hp", secondPokemon.name, secondPokemon.hitPoints);
+        }
     }
 
     /**
@@ -102,7 +128,11 @@ public class Colosseum {
      * Write this function.
      */
     public static void determineWinner() {
-        System.out.println("Implement me!");
+        if (firstPokemon.hitPoints > secondPokemon.hitPoints) {
+            System.out.printf("%s is the winner", firstPokemon.name);
+        } else {
+            System.out.printf("%s is the winner", secondPokemon.name);
+        }
     }
 
     /**
