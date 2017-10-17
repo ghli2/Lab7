@@ -74,7 +74,6 @@ public class Colosseum {
      */
     public static Pokemon buildPokemon() {
         Scanner s = new Scanner(System.in);
-        final int levelLim = 50;
         Pokemon tempPokemon = new Pokemon();
         System.out.print("Please name your Pokemon: ");
         tempPokemon.name = s.nextLine();
@@ -82,19 +81,19 @@ public class Colosseum {
             System.out.print("\nEnter hitpoints (1-50): ");
             tempPokemon.hitPoints = Integer.parseInt(s.nextLine());
         }
-        while (tempPokemon.hitPoints < 1 || tempPokemon.hitPoints > levelLim);
+        while (tempPokemon.hitPoints < 1 || tempPokemon.hitPoints > MAX_HIT_POINTS);
         System.out.print("\nSplit fifty points between attack level and defense level");
         do {
             System.out.print("\nEnter attack level (1-49): ");
             tempPokemon.attackLevel = Integer.parseInt(s.nextLine());
         }
-        while (tempPokemon.attackLevel < 1 || tempPokemon.attackLevel >= levelLim);
+        while (tempPokemon.attackLevel < 1 || tempPokemon.attackLevel >= MAX_HIT_POINTS);
         do {
-            System.out.printf("\nEnter defense level(1-%d): ", levelLim - tempPokemon.attackLevel);
+            System.out.printf("\nEnter def lvl(1-%d): ", MAX_HIT_POINTS - tempPokemon.attackLevel);
             tempPokemon.defenseLevel = Integer.parseInt(s.nextLine());
         }
         while (tempPokemon.defenseLevel < 1
-            || tempPokemon.defenseLevel > levelLim - tempPokemon.attackLevel);
+            || tempPokemon.defenseLevel > MAX_HIT_POINTS - tempPokemon.attackLevel);
 
         return tempPokemon;
     }
